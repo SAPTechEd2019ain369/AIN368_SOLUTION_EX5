@@ -42,5 +42,5 @@
 		}
 	}
 
-customElements.define("com-sap-teched-gauge-solution-aps", GaugeAps);
+customElements.define("com-sap-teched-gauge-solution-exe5-aps", GaugeAps);
 })();
