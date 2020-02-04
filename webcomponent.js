@@ -77,7 +77,7 @@
                 this._svgContainer._groups[0][0].innerHTML = "";
             }
 
-            this._endAngleDeg = Number(value;
+            this._endAngleDeg = Number(value);
             this.redraw();
         };
 
