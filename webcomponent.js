@@ -113,7 +113,7 @@
                 .style("fill", this._displayedColor)
                 .attr("width", this._widgetWidth).attr("height", this._widgetWidth) // Added height and width so arc is visible
                 .attr("transform", function() {
-                    return d3.svg.transform()
+                    return window._d3.svg.transform()
                         .translate(this._outerRad, this._outerRad);
                 })
                 .attr("d", arcDef)
@@ -140,7 +140,7 @@
                 .attr("d", ringArcDefinition)
                 .attr("fill", this._ringColorCode)
                 .attr("transform", function() {
-                    return d3.svg.transform()
+                    return window._d3.svg.transform()
                         .translate(this._outerRad, this._outerRad);
                 });
 
