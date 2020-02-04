@@ -43,7 +43,7 @@
             this._svgContainer;
     
             this._outerRad = 0.0;
-            this._endAngleDeg = 0.0;
+            this._endAngleDeg = 45.0;
             this._endAngleDegMax = 145.0;
             this._startAngleDeg = -145.0;
             
