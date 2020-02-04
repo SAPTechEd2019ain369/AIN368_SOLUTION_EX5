@@ -112,10 +112,7 @@
                 .datum({endAngle: this._endAngleDeg * (pi/180), startAngle: this._startAngleDeg * (pi/180)})
                 .style("fill", this._displayedColor)
                 .attr("width", this._widgetWidth).attr("height", this._widgetWidth) // Added height and width so arc is visible
-                .attr("transform", function() {
-                    return window._d3.svg.transform()
-                        .translate(this._outerRad, this._outerRad);
-                })
+                .attr("transform", 'translate('+this._outerRad+','+this._outerRad+')')
                 .attr("d", arcDef)
                 .attr( "fill-opacity", this._gaugeOpacity );
 
@@ -139,10 +136,7 @@
                 .append("path")
                 .attr("d", ringArcDefinition)
                 .attr("fill", this._ringColorCode)
-                .attr("transform", function() {
-                    return window._d3.svg.transform()
-                        .translate(this._outerRad, this._outerRad);
-                });
+                .attr("transform", 'translate('+this._outerRad+','+this._outerRad+')');
 
 
             ///////////////////////////////////////////
