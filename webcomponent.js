@@ -52,6 +52,8 @@
             this._guideOpacity = 0.75;
             this._ringThickness = 5;
             this._bracketThickness = 5;
+            
+            this._animationEase = "easeLinear";
 
             //Adding event handler for click events
 			this.addEventListener("click", event => {
@@ -119,8 +121,8 @@
             if ((this._endAngleDeg > 0) && (this._startAngleDeg < 0)){
                 
                 guageArc.transition()
-                    .duration(tempAnimationDuration)
-                    .delay(tempAnimationDelay)
+                    .duration(1000)
+                    .delay(0)
                     .attrTween("d", function(d) {
                         var interpolate = window._d3.interpolate(this._startAngleDeg * (pi/180), 0);
                         return function(t) {
@@ -129,7 +131,7 @@
                         };
                     });
                 guageArc.transition()
-                    .duration(tempAnimationDuration)
+                    .duration(1000)
                     .delay(0)
                     .ease(this._animationEase)
                     .attrTween("d", function(d) {
@@ -141,8 +143,8 @@
                     });
             } else {
                     guageArc.transition()
-                        .duration(tempAnimationDuration)
-                        .delay(tempAnimationDelay)
+                        .duration(1000)
+                        .delay(0)
                         .ease(this._animationEase)
                         .attrTween("d", function(d) {
                             var interpolate = window._d3.interpolate(this._startAngleDeg * (pi/180), this._endAngleDeg * (pi/180));
