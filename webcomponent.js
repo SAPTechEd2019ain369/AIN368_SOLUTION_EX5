@@ -116,7 +116,42 @@
                 .attr("d", arcDef)
                 .attr( "fill-opacity", this._gaugeOpacity );
 
+            if ((this._endAngleDeg > 0) && (this._startAngleDeg < 0)){
                 
+                guageArc.transition()
+                    .duration(tempAnimationDuration)
+                    .delay(tempAnimationDelay)
+                    .attrTween("d", function(d) {
+                        var interpolate = window._d3.interpolate(this._startAngleDeg * (pi/180), 0);
+                        return function(t) {
+                            d.endAngle = interpolate(t);
+                            return arcDef(d);
+                        };
+                    });
+                guageArc.transition()
+                    .duration(tempAnimationDuration)
+                    .delay(0)
+                    .ease(this._animationEase)
+                    .attrTween("d", function(d) {
+                        var interpolate = window._d3.interpolate(0, this._endAngleDeg * (pi/180));
+                        return function(t) {
+                            d.endAngle = interpolate(t);
+                            return arcDef(d);
+                        };
+                    });
+            } else {
+                    guageArc.transition()
+                        .duration(tempAnimationDuration)
+                        .delay(tempAnimationDelay)
+                        .ease(this._animationEase)
+                        .attrTween("d", function(d) {
+                            var interpolate = window._d3.interpolate(this._startAngleDeg * (pi/180), this._endAngleDeg * (pi/180));
+                            return function(t) {
+                                d.endAngle = interpolate(t);
+                                return arcDef(d);
+                            };
+                        });			
+            }               
             
 
             ///////////////////////////////////////////	
