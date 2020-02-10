@@ -145,6 +145,7 @@
             }               
             
 
+            /*
             ///////////////////////////////////////////	
             //Lets build a border ring around the gauge
             ///////////////////////////////////////////
@@ -181,6 +182,7 @@
                 .attr("stroke", this._ringColorCode)
                 .attr("stroke-width", this._bracketThickness)
                 .attr("fill", "none");	
+            */
 	
         };
 
