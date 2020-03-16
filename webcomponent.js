@@ -52,8 +52,6 @@
             this._guideOpacity = 0.75;
             this._ringThickness = 5;
             this._bracketThickness = 5;
-            
-            this._animationEase = "easeLinear";
 
             //Adding event handler for click events
 			this.addEventListener("click", event => {
@@ -114,38 +112,16 @@
                 .datum({endAngle: this._endAngleDeg * (pi/180), startAngle: this._startAngleDeg * (pi/180)})
                 .style("fill", this._displayedColor)
                 .attr("width", this._widgetWidth).attr("height", this._widgetWidth) // Added height and width so arc is visible
-                .attr("transform", 'translate('+this._outerRad+','+this._outerRad+')')
+                .attr("transform", function() {
+                    return window._d3.svg.transform()
+                        .translate(this._outerRad, this._outerRad);
+                })
                 .attr("d", arcDef)
                 .attr( "fill-opacity", this._gaugeOpacity );
 
-            if ((this._endAngleDeg > 0) && (this._startAngleDeg < 0)){
                 
-                guageArc.transition()
-                    .duration(1000)
-                    .delay(0)
-                    .attrTween("d", function(d) {
-                        var interpolate = window._d3.interpolate(this._startAngleDeg * (pi/180), 0);
-                        return function(t) {
-                            d.endAngle = interpolate(t);
-                            return arcDef(d);
-                        };
-                    });
-            } else {
-                    guageArc.transition()
-                        .duration(1000)
-                        .delay(0)
-                        .ease(this._animationEase)
-                        .attrTween("d", function(d) {
-                            var interpolate = window._d3.interpolate(this._startAngleDeg * (pi/180), this._endAngleDeg * (pi/180));
-                            return function(t) {
-                                d.endAngle = interpolate(t);
-                                return arcDef(d);
-                            };
-                        });			
-            }               
             
 
-            /*
             ///////////////////////////////////////////	
             //Lets build a border ring around the gauge
             ///////////////////////////////////////////
@@ -163,7 +139,10 @@
                 .append("path")
                 .attr("d", ringArcDefinition)
                 .attr("fill", this._ringColorCode)
-                .attr("transform", 'translate('+this._outerRad+','+this._outerRad+')');
+                .attr("transform", function() {
+                    return window._d3.svg.transform()
+                        .translate(this._outerRad, this._outerRad);
+                });
 
 
             ///////////////////////////////////////////
@@ -182,7 +161,6 @@
                 .attr("stroke", this._ringColorCode)
                 .attr("stroke-width", this._bracketThickness)
                 .attr("fill", "none");	
-            */
 	
         };
 
